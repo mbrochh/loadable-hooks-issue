@@ -1,0 +1,20 @@
+{
+    "env": {
+        "production": {
+            "presets": [
+                "razzle/babel"
+            ],
+            "plugins": [
+                "@loadable/babel-plugin"
+            ]
+        },
+        "development": {
+            "presets": [
+                "razzle/babel"
+            ],
+            "plugins": [
+                "@loadable/babel-plugin",
+            ]
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowUnreachableCode": false,
+        "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "lib": [
+            "es6",
+            "es2015",
+            "es2017",
+            "dom"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "pretty": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "es2016",
+        // added by us:
+        "checkJs": false,
+        "skipLibCheck": true,
+        "baseUrl": "./src",
+        "types": [
+            "node",
+            "@emotion/core",
+            "webpack-env"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "scripts",
+        "acceptance-tests",
+        "webpack",
+        "jest",
+        "razzle.config.js",
+        "coverage",
+        "cypress",
+        // added by us:
+        "public",
+        "old",
+        "developer-tools"
+    ]
+}
