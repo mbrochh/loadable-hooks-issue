@@ -8,7 +8,7 @@ import NavigationMain from './NavigationMain'
 
 function Foo() {
   const [isLoaded, setIsLoaded] = useState(false)
-  return <div>Foo</div>
+  return <div>Foo: {`${isLoaded}`}</div>
 }
 
 const App = () => (

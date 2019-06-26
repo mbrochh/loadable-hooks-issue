@@ -4,6 +4,9 @@ import { StaticRouter } from 'react-router-dom'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
 
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
+import path from 'path'
+
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
 const server = express()
@@ -12,11 +15,17 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {}
-    const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
+    const statsFile = path.resolve('./build/public/loadable-stats.json')
+    const extractor = new ChunkExtractor({ statsFile, entrypoints: ['client'] })
+    const app = (
+      <ChunkExtractorManager extractor={extractor}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ChunkExtractorManager>
     )
+    const markup = renderToString(app)
+    const scriptTags = extractor.getScriptTags()
 
     if (context.url) {
       res.redirect(context.url)
@@ -42,6 +51,7 @@ server
     </head>
     <body>
         <div id="root">${markup}</div>
+        ${scriptTags}
     </body>
 </html>`
       )
