@@ -9,6 +9,10 @@ import NavigationMain from './NavigationMain'
 
 const View2 = loadable(() => import('./View2'))
 const Home = loadable(() => import('./Home'))
+const ContactRequestView = loadable(() => import('./ContactRequestView'))
+const ContactRequestCreateView = loadable(() =>
+  import('./ContactRequestCreateView')
+)
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -17,6 +21,16 @@ const App = () => (
       <Switch>
         <Route exact={true} path="/" component={Home} />
         <Route exact={true} path="/view2" component={View2} />
+        <Route
+          exact={true}
+          path="/view2/:contactRequestId"
+          component={ContactRequestView}
+        />
+        <Route
+          exact={true}
+          path="/create"
+          component={ContactRequestCreateView}
+        />
       </Switch>
     </div>
   </ThemeProvider>
