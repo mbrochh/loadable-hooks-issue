@@ -1,25 +1,25 @@
 import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Home from './Home'
-import './App.css'
+import loadable from '@loadable/component'
+import { ThemeProvider } from 'emotion-theming'
 
-import View2 from './View2'
+import theme from './theme'
+
 import NavigationMain from './NavigationMain'
 
-function Foo() {
-  const [isLoaded, setIsLoaded] = useState(false)
-  return <div>Foo: {`${isLoaded}`}</div>
-}
+const View2 = loadable(() => import('./View2'))
+const Home = loadable(() => import('./Home'))
 
 const App = () => (
-  <div>
-    <Route path="/" component={NavigationMain} />
-    <Switch>
-      <Route exact={true} path="/" component={Home} />
-      <Route exact={true} path="/view2" component={View2} />
-    </Switch>
-    <Foo />
-  </div>
+  <ThemeProvider theme={theme}>
+    <div>
+      <Route path="/" component={NavigationMain} />
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route exact={true} path="/view2" component={View2} />
+      </Switch>
+    </div>
+  </ThemeProvider>
 )
 
 export default App

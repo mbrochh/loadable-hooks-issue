@@ -1,7 +1,18 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
+
+const Green = styled.div(({ theme }) => ({
+  color: theme.colorPrimary,
+}))
 
 const View2 = () => {
-  return <div>View2</div>
+  return (
+    <div css={{ color: 'red' }}>
+      View2
+      <Green>Green</Green>
+    </div>
+  )
 }
 
 export default View2
